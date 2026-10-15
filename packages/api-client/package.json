@@ -1,0 +1,22 @@
+{
+  "name": "@vanth/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate": "pnpm generate:data && pnpm generate:media",
+    "generate:data": "openapi-typescript ../api-spec/data-server.yml -o src/generated/data-server.d.ts",
+    "generate:media": "openapi-typescript ../api-spec/media-server.yml -o src/generated/media-server.d.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "vanth",
+  "private": true,
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "generate": "pnpm --filter @vanth/api-client generate",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

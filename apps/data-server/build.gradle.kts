@@ -48,11 +48,14 @@ openApiGenerate {
         "annotationLibrary" to "none"
 	))
 }
-
 sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/java"))
 
 tasks.compileJava {
 	dependsOn(tasks.openApiGenerate)
+}
+
+springBoot {
+	buildInfo()
 }
 
 tasks.withType<Test> {

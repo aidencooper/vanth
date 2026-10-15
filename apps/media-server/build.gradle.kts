@@ -35,8 +35,8 @@ openApiGenerate {
 	generatorName.set("spring")
 	inputSpec.set("$rootDir/packages/api-spec/media-server.yml")
 	outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
-	apiPackage.set("net.aidencooper.vanth.data.api")
-	modelPackage.set("net.aidencooper.vanth.data.api.model")
+	apiPackage.set("net.aidencooper.vanth.media.api")
+	modelPackage.set("net.aidencooper.vanth.media.api.model")
 	configOptions.set(mapOf(
 		"interfaceOnly" to "true",
         "useSpringBoot4" to "true",
@@ -48,8 +48,11 @@ openApiGenerate {
         "annotationLibrary" to "none"
 	))
 }
-
 sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/java"))
+
+springBoot {
+	buildInfo()
+}
 
 tasks.compileJava {
 	dependsOn(tasks.openApiGenerate)

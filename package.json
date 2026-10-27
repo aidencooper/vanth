@@ -1,8 +1,9 @@
 {
   "name": "vanth",
   "private": true,
-  "packageManager": "pnpm@12.11.2",
+  "packageManager": "pnpm@12.15.0",
   "scripts": {
+    "dev": "pnpm run /^dev:/",
     "dev:data": "node gradle.mjs :apps:data-server:bootRun",
     "dev:media": "node gradle.mjs :apps:media-server:bootRun",
     "dev:web": "pnpm --filter @vanth/web dev",

@@ -3,7 +3,10 @@
   "private": true,
   "packageManager": "pnpm@12.11.2",
   "scripts": {
+    "dev:data": "node gradle.mjs :apps:data-server:bootRun",
+    "dev:media": "node gradle.mjs :apps:media-server:bootRun",
+    "dev:web": "pnpm --filter @vanth/web dev",
     "generate": "pnpm --filter @vanth/api-client generate",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm generate && pnpm -r typecheck"
   }
 }

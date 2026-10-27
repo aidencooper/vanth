@@ -2,5 +2,3 @@ packages:
   - "apps/web"
   - "apps/mobile"
   - "packages/*"
-allowBuilds:
-  '@openapitools/openapi-generator-cli': true

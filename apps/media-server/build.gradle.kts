@@ -38,7 +38,6 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-restclient-test")
 
 	// SQLite
-	implementation("org.komamitsu:spring-data-sqlite:1.3.0")
 	runtimeOnly("org.xerial:sqlite-jdbc")
 
 	// Web

@@ -33,6 +33,10 @@ dependencies {
 	testAnnotationProcessor("org.projectlombok:lombok")
 	testCompileOnly("org.projectlombok:lombok")
 
+	// MapStruct
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+	implementation ("org.mapstruct:mapstruct:1.6.3")
+
 	// Rest Client
 	implementation("org.springframework.boot:spring-boot-starter-restclient")
 	testImplementation("org.springframework.boot:spring-boot-starter-restclient-test")
@@ -45,16 +49,17 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 
 	// Validation
-
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
 }
 
 tasks.withType<BootRun> {
-	jvmArgs("--enable-native-access=ALL-UNNAMED")
+	jvmArgs(
+		"--enable-native-access=ALL-UNNAMED",
+		"--sun-misc-unsafe-memory-access=allow"
+	)
 }
 
 tasks.withType<Test> {
   	useJUnitPlatform()
 }
-

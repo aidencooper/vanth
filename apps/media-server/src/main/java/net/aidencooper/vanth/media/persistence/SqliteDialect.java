@@ -11,6 +11,8 @@ import org.springframework.data.relational.core.sql.IdentifierProcessing.LetterC
 import org.springframework.data.relational.core.sql.IdentifierProcessing.Quoting;
 
 public class SqliteDialect extends AbstractDialect {
+    public static SqliteDialect INSTANCE = new SqliteDialect();
+    
     private static final IdGeneration ID_GENERATION = new IdGeneration() {
         @Override 
         public boolean sequencesSupported() {

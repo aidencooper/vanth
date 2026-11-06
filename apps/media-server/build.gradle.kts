@@ -1,16 +1,17 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
+
 plugins {
 	java
-	id("org.springframework.boot") version "4.1.1"
+	id("org.springframework.boot") version "4.1.2"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.openapi.generator") version "7.26.0"
 }
 
 group = "net.aidencooper.vanth.media"
-version = "0.1.0"
+version = "0.0.1-SNAPSHOT"
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
+  	toolchain {
+    	languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
@@ -19,45 +20,42 @@ repositories {
 }
 
 dependencies {
-	// WebMVC
-	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+	// JDBC
+	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+	testImplementation("org.springframework.boot:spring-boot-starter-data-jdbc-test")
 
 	// JUnit
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+	// Lombok
+	annotationProcessor("org.projectlombok:lombok")
+	compileOnly("org.projectlombok:lombok")
+	testAnnotationProcessor("org.projectlombok:lombok")
+	testCompileOnly("org.projectlombok:lombok")
+
+	// Rest Client
+	implementation("org.springframework.boot:spring-boot-starter-restclient")
+	testImplementation("org.springframework.boot:spring-boot-starter-restclient-test")
+
+	// SQLite
+	implementation("org.komamitsu:spring-data-sqlite:1.3.0")
+	runtimeOnly("org.xerial:sqlite-jdbc")
+
+	// Web
+	implementation("org.springframework.boot:spring-boot-starter-webmvc")
+	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+
 	// Validation
+
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
 }
 
-openApiGenerate {
-	generatorName.set("spring")
-	inputSpec.set("$rootDir/packages/api-spec/media-server.yml")
-	outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
-	apiPackage.set("net.aidencooper.vanth.media.api")
-	modelPackage.set("net.aidencooper.vanth.media.api.model")
-	configOptions.set(mapOf(
-		"interfaceOnly" to "true",
-        "useSpringBoot4" to "true",
-        "useJackson3" to "true",
-        "useTags" to "true",
-        "skipDefaultInterface" to "true",
-        "openApiNullable" to "false",
-        "documentationProvider" to "none",
-        "annotationLibrary" to "none"
-	))
-}
-sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/java"))
-
-springBoot {
-	buildInfo()
-}
-
-tasks.compileJava {
-	dependsOn(tasks.openApiGenerate)
+tasks.withType<BootRun> {
+	jvmArgs("--enable-native-access=ALL-UNNAMED")
 }
 
 tasks.withType<Test> {
-	useJUnitPlatform()
+  	useJUnitPlatform()
 }
+

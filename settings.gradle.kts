@@ -1,2 +1,2 @@
 rootProject.name = "vanth"
-include("apps:data-server", "apps:media-server")
+include("apps:media-server")

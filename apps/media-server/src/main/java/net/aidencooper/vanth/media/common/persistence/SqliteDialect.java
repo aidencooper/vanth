@@ -1,4 +1,4 @@
-package net.aidencooper.vanth.media.persistence;
+package net.aidencooper.vanth.media.common.persistence;
 
 import org.springframework.data.relational.core.dialect.AbstractDialect;
 import org.springframework.data.relational.core.dialect.IdGeneration;
@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.sql.IdentifierProcessing.LetterC
 import org.springframework.data.relational.core.sql.IdentifierProcessing.Quoting;
 
 public class SqliteDialect extends AbstractDialect {
-    public static SqliteDialect INSTANCE = new SqliteDialect();
+    public static final SqliteDialect INSTANCE = new SqliteDialect();
     
     private static final IdGeneration ID_GENERATION = new IdGeneration() {
         @Override 
@@ -23,7 +23,7 @@ public class SqliteDialect extends AbstractDialect {
 		public String createSequenceQuery(SqlIdentifier sequenceName) {
 			throw new UnsupportedOperationException(
                 "Sequence generation for %s dialect is not supported."
-                .formatted(this.getClass().getSimpleName())
+                .formatted(SqliteDialect.class.getSimpleName())
             );
 		}
     };
@@ -38,10 +38,7 @@ public class SqliteDialect extends AbstractDialect {
 
         @Override
         public String getLock(LockOptions lockOptions) {
-            throw new UnsupportedOperationException(
-                "Pessimistic locking for %s dialect is not supported."
-                .formatted(this.getClass().getSimpleName())
-            );
+            return "";
         }
     };
 
@@ -66,7 +63,7 @@ public class SqliteDialect extends AbstractDialect {
         public String getOffset(long offset) {
             throw new UnsupportedOperationException(
                 "OFFSET clause without the LIMIT clause for %s dialect is not supported."
-                .formatted(this.getClass().getSimpleName())
+                .formatted(SqliteDialect.class.getSimpleName())
             );
         }
     };

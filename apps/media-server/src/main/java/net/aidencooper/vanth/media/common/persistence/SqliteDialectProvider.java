@@ -1,4 +1,4 @@
-package net.aidencooper.vanth.media.persistence;
+package net.aidencooper.vanth.media.common.persistence;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

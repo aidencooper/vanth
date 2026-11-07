@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.aidencooper.vanth.media.library.dto.LibraryRequest;
 import net.aidencooper.vanth.media.library.dto.LibraryResponse;
@@ -29,12 +30,12 @@ public class LibraryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LibraryResponse createLibrary(@RequestBody LibraryRequest request) {
+    public LibraryResponse createLibrary(@Valid @RequestBody LibraryRequest request) {
         return this.libraryService.createLibrary(request);
     }
 
     @PutMapping("/{id}")
-    public LibraryResponse updateLibrary(@PathVariable Long id, @RequestBody LibraryRequest request) {
+    public LibraryResponse updateLibrary(@PathVariable Long id, @Valid @RequestBody LibraryRequest request) {
         return this.libraryService.updateLibrary(id, request);
     } 
 

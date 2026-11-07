@@ -18,20 +18,16 @@ public interface LibraryMapper {
     LibraryResponse toResponse(Library library);
 
     default Library updateLibrary(Library library, LibraryRequest request) {
-        if(request == null) return library;
-
         return new Library(
             library.id(), 
-            request.type() != null ? request.type() : library.type(), 
-            request.folders() != null ? this.toFolderEntities(request.folders()) : library.folders()
+            request.type(), 
+            this.toFolderEntities(request.folders())
         );
     }
 
     default Set<Library.Folder> toFolderEntities(Set<String> paths) {
-        if(paths == null) return null;
-
         return paths.stream()
-            .map(Library.Folder::new)
+            .map(Library.Folder::of)
             .collect(Collectors.toSet());
     }
 

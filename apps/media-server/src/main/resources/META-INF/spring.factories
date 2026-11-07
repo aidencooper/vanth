@@ -1,1 +1,1 @@
-org.springframework.data.jdbc.core.dialect.DialectResolver$JdbcDialectProvider=net.aidencooper.vanth.media.persistence.SqliteDialectProvider
+org.springframework.data.jdbc.core.dialect.DialectResolver$JdbcDialectProvider=net.aidencooper.vanth.media.common.persistence.SqliteDialectProvider

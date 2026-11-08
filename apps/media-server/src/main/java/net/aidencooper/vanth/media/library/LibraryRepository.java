@@ -1,7 +1,9 @@
 package net.aidencooper.vanth.media.library;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-public interface LibraryRepository extends CrudRepository<Library, Long> {
-    
+import org.springframework.data.repository.ListCrudRepository;
+
+public interface LibraryRepository extends ListCrudRepository<Library, Long> {
+    List<Library> findAllByOrderByIdAsc();
 }

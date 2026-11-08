@@ -60,6 +60,8 @@ tasks.withType<BootRun> {
 	)
 }
 
+val testDatabase = layout.buildDirectory.file("test-vanth-media.db")
 tasks.withType<Test> {
+	doFirst { testDatabase.get().asFile.delete() }
   	useJUnitPlatform()
 }

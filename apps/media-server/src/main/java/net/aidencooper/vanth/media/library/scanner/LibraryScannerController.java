@@ -1,4 +1,4 @@
-package net.aidencooper.vanth.media.scanner;
+package net.aidencooper.vanth.media.library.scanner;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import net.aidencooper.vanth.media.library.LibraryService;
 @RestController 
 @RequestMapping("/api/v1/libraries")
 @RequiredArgsConstructor 
-public class ScanController {
+public class LibraryScannerController {
     private final LibraryService libraryService;
     private final LibraryScanner libraryScanner;
 
